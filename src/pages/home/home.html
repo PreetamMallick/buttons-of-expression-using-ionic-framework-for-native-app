@@ -1,0 +1,40 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>
+      		Express Buttons
+    	</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<!-- expression button groups -->
+  	<ion-fab right bottom>
+    	<button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    	<ion-fab-list side="left">
+      		<button ion-fab (click)="addExpression(like)" #like id="like"><ion-icon name="thumbs-up"></ion-icon></button>
+      		<button ion-fab (click)="addExpression(love)" #love id="love"><ion-icon name="heart"></ion-icon></button>
+      		<button ion-fab (click)="addExpression(dislike)" #dislike id="dislike"><ion-icon name="thumbs-down"></ion-icon></button>
+      		<button ion-fab (click)="addExpression(angry)" #angry id="angry"><ion-icon name="hand"></ion-icon></button>
+    	</ion-fab-list>
+  	</ion-fab>
+
+  	<p>The following expression image which will appear, can be styled as per your requirement</p>
+
+  	<!-- optional switch case -->
+  	<div>
+  		<ul [ngSwitch]="expression" class="expression-list">
+  			<li *ngSwitchCase="'like'"><h4>I like it</h4></li>
+  			<li *ngSwitchCase="'love'"><h4>I love it</h4></li>
+  			<li *ngSwitchCase="'dislike'"><h4>I dislike it</h4></li>
+  			<li *ngSwitchCase="'angry'"><h4>I am angry</h4></li>
+  			<!-- <li *ngSwitchDefault></li> -->
+		</ul>
+  	</div>
+
+  	<!-- result will be displayed here -->
+  	<div class="expression-box {{expression=='like'?'liked':expression=='love'?'loved':expression=='dislike'?'disliked':expression=='angry'?'angry':''}}">
+  		<img src="assets/images/{{expression=='like'?'like.jpg':expression=='love'?'heart.png':expression=='dislike'?'dislike.jpg':expression=='angry'?'angry.png':''}}" alt="{{expression}}">
+  	</div>
+
+</ion-content>
